@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ task.name }}
+    <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">Delete</a>
+    <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary link-to-page">Update</a>
+  </h1>
+  <p>{{ task.description|default:"No description" }}</p>
+  <ul>
+    <li>Type: {{ task.task_type.name }}</li>
+    <li>Priority: {{ task.get_priority_display }}</li>
+    <li>Deadline: {{ task.deadline }}</li>
+    <li>Status: {% if task.is_completed %}<span class="text-success">Done</span>{% else %}<span class="text-danger">Not done</span>{% endif %}</li>
+    <li>Tags: {% for tag in task.tags.all %}<span class="badge badge-info">{{ tag.name }}</span> {% empty %}none{% endfor %}</li>
+  </ul>
+
+  <form action="{% url 'tasks:toggle-task-completed' pk=task.id %}" method="post" class="d-inline">
+    {% csrf_token %}
+    <input type="submit" class="btn {% if task.is_completed %}btn-warning{% else %}btn-success{% endif %}"
+           value="{% if task.is_completed %}Mark as not done{% else %}Mark as done{% endif %}">
+  </form>
+
+  <h2 class="mt-4">Assignees</h2>
+  <form action="{% url 'tasks:toggle-task-assign' pk=task.id %}" method="post">
+    {% csrf_token %}
+    {% if user in task.assignees.all %}
+      <input type="submit" class="btn btn-danger" value="Unassign me">
+    {% else %}
+      <input type="submit" class="btn btn-success" value="Assign me">
+    {% endif %}
+  </form>
+  <hr>
+  <ul>
+    {% for worker in task.assignees.all %}
+      <li><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a> ({{ worker.first_name }} {{ worker.last_name }}{% if worker.position %}, {{ worker.position }}{% endif %})</li>
+    {% empty %}
+      <li>Nobody is assigned yet</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ entity|capfirst }} list
+    <a href="{% url 'tasks:'|add:url_prefix|add:'-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  {% include "includes/search.html" %}
+  {% if object_list %}
+    <table class="table">
+      <tr><th>Name</th><th></th></tr>
+      {% for obj in object_list %}
+        <tr>
+          <td>{{ obj.name }}</td>
+          <td>
+            <a href="{% url 'tasks:'|add:url_prefix|add:'-update' pk=obj.pk %}">Update</a> |
+            <a href="{% url 'tasks:'|add:url_prefix|add:'-delete' pk=obj.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no {{ entity }}s.</p>
+  {% endif %}
+{% endblock %}

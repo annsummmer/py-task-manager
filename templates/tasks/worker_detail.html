@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ worker.username }}
+    <a href="{% url 'tasks:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">Delete</a>
+    <a href="{% url 'tasks:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">Update</a>
+  </h1>
+  <p><strong>Name:</strong> {{ worker.first_name }} {{ worker.last_name }}</p>
+  <p><strong>Email:</strong> {{ worker.email|default:"-" }}</p>
+  <p><strong>Position:</strong> {{ worker.position|default:"-" }}</p>
+
+  <h2>Not completed tasks ({{ open_tasks|length }})</h2>
+  <ul>
+    {% for task in open_tasks %}
+      <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> ({{ task.task_type.name }}), deadline {{ task.deadline }}</li>
+    {% empty %}
+      <li>None</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Completed tasks ({{ completed_tasks|length }})</h2>
+  <ul>
+    {% for task in completed_tasks %}
+      <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> ({{ task.task_type.name }})</li>
+    {% empty %}
+      <li>None</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load query_transform %}
+
+{% block content %}
+  <h1>
+    Task list
+    <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  {% include "includes/search.html" %}
+  <p>
+    Show:
+    <a href="?{% query_transform status=None page=None %}">all</a> |
+    <a href="?{% query_transform status='open' page=None %}">not completed</a> |
+    <a href="?{% query_transform status='done' page=None %}">completed</a>
+  </p>
+  {% if task_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th><th>Type</th><th>Priority</th><th>Deadline</th><th>Status</th><th>Assignees</th><th>Tags</th>
+      </tr>
+      {% for task in task_list %}
+        <tr>
+          <td><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></td>
+          <td>{{ task.task_type.name }}</td>
+          <td>{{ task.get_priority_display }}</td>
+          <td>{{ task.deadline }}</td>
+          <td>{% if task.is_completed %}<span class="text-success">Done</span>{% else %}<span class="text-danger">Not done</span>{% endif %}</td>
+          <td>{% for worker in task.assignees.all %}{{ worker.username }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+          <td>{% for tag in task.tags.all %}<span class="badge badge-info">{{ tag.name }}</span> {% endfor %}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no tasks.</p>
+  {% endif %}
+{% endblock %}

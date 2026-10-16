@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task Manager Home</h1>
+  <p>Create tasks, assign them to your team and mark them as done before the deadline.</p>
+  <ul>
+    <li><strong>Tasks:</strong> {{ num_tasks }} ({{ num_open_tasks }} not completed)</li>
+    <li><strong>Workers:</strong> {{ num_workers }}</li>
+  </ul>
+
+  <h2>My open tasks</h2>
+  {% if my_open_tasks %}
+    <ul>
+      {% for task in my_open_tasks %}
+        <li>
+          <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+          ({{ task.task_type.name }}, {{ task.get_priority_display }}) &mdash; deadline {{ task.deadline }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nothing to do, great job!</p>
+  {% endif %}
+{% endblock %}

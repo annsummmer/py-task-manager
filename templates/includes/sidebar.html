@@ -1,0 +1,25 @@
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+    <li class="list-group-item">
+      <form action="/accounts/logout/" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="/">
+        <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; padding: 0;">
+            Log Out
+        </button>
+      </form>
+    </li>
+  {% else %}
+    <li class="list-group-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+  {% endif %}
+
+  <br>
+
+  <li class="list-group-item"><a href="{% url 'tasks:index' %}">Home</a></li>
+  <li class="list-group-item"><a href="{% url 'tasks:task-list' %}">All tasks</a></li>
+  <li class="list-group-item"><a href="{% url 'tasks:worker-list' %}">All workers</a></li>
+  <li class="list-group-item"><a href="{% url 'tasks:position-list' %}">Positions</a></li>
+  <li class="list-group-item"><a href="{% url 'tasks:task-type-list' %}">Task types</a></li>
+  <li class="list-group-item"><a href="{% url 'tasks:tag-list' %}">Tags</a></li>
+</ul>
