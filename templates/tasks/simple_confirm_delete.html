@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Delete {{ entity }} "{{ object.name }}"?</h1>
-  <form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes" class="btn btn-danger">
-  </form>
+  <div class="card"><div class="card-body">
+    <h1 class="h4 mb-3">Delete {{ entity }} "{{ object.name }}"?</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Yes" class="btn btn-danger">
+    </form>
+  </div></div>
 {% endblock %}

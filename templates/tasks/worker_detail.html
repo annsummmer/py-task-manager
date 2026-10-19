@@ -1,30 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ worker.username }}
-    <a href="{% url 'tasks:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">Delete</a>
-    <a href="{% url 'tasks:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">Update</a>
-  </h1>
-  <p><strong>Name:</strong> {{ worker.first_name }} {{ worker.last_name }}</p>
-  <p><strong>Email:</strong> {{ worker.email|default:"-" }}</p>
-  <p><strong>Position:</strong> {{ worker.position|default:"-" }}</p>
+  <div class="page-header">
+    <h1>{{ worker.username }}</h1>
+    <div>
+      <a href="{% url 'tasks:worker-update' pk=worker.id %}" class="btn btn-secondary">Update</a>
+      <a href="{% url 'tasks:worker-delete' pk=worker.id %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
 
-  <h2>Not completed tasks ({{ open_tasks|length }})</h2>
-  <ul>
-    {% for task in open_tasks %}
-      <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> ({{ task.task_type.name }}), deadline {{ task.deadline }}</li>
-    {% empty %}
-      <li>None</li>
-    {% endfor %}
-  </ul>
+  <div class="card mb-4"><div class="card-body">
+    <p class="mb-1"><strong>Name:</strong> {{ worker.first_name }} {{ worker.last_name }}</p>
+    <p class="mb-1"><strong>Email:</strong> {{ worker.email|default:"-" }}</p>
+    <p class="mb-0"><strong>Position:</strong> {{ worker.position|default:"-" }}</p>
+  </div></div>
 
-  <h2>Completed tasks ({{ completed_tasks|length }})</h2>
-  <ul>
-    {% for task in completed_tasks %}
-      <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> ({{ task.task_type.name }})</li>
-    {% empty %}
-      <li>None</li>
-    {% endfor %}
-  </ul>
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100"><div class="card-body">
+        <h2 class="h5">Not completed tasks ({{ open_tasks|length }})</h2>
+        <ul class="list-group list-group-flush">
+          {% for task in open_tasks %}
+            <li class="list-group-item px-0"><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> ({{ task.task_type.name }}), deadline {{ task.deadline }}</li>
+          {% empty %}
+            <li class="list-group-item px-0 text-muted">None</li>
+          {% endfor %}
+        </ul>
+      </div></div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100"><div class="card-body">
+        <h2 class="h5">Completed tasks ({{ completed_tasks|length }})</h2>
+        <ul class="list-group list-group-flush">
+          {% for task in completed_tasks %}
+            <li class="list-group-item px-0"><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> ({{ task.task_type.name }})</li>
+          {% empty %}
+            <li class="list-group-item px-0 text-muted">None</li>
+          {% endfor %}
+        </ul>
+      </div></div>
+    </div>
+  </div>
 {% endblock %}

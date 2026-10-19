@@ -1,41 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ task.name }}
-    <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">Delete</a>
-    <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary link-to-page">Update</a>
-  </h1>
-  <p>{{ task.description|default:"No description" }}</p>
-  <ul>
-    <li>Type: {{ task.task_type.name }}</li>
-    <li>Priority: {{ task.get_priority_display }}</li>
-    <li>Deadline: {{ task.deadline }}</li>
-    <li>Status: {% if task.is_completed %}<span class="text-success">Done</span>{% else %}<span class="text-danger">Not done</span>{% endif %}</li>
-    <li>Tags: {% for tag in task.tags.all %}<span class="badge badge-info">{{ tag.name }}</span> {% empty %}none{% endfor %}</li>
-  </ul>
+  <div class="page-header">
+    <h1>{{ task.name }}</h1>
+    <div>
+      <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary">Update</a>
+      <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
 
-  <form action="{% url 'tasks:toggle-task-completed' pk=task.id %}" method="post" class="d-inline">
-    {% csrf_token %}
-    <input type="submit" class="btn {% if task.is_completed %}btn-warning{% else %}btn-success{% endif %}"
-           value="{% if task.is_completed %}Mark as not done{% else %}Mark as done{% endif %}">
-  </form>
+  <div class="card mb-4"><div class="card-body">
+    <p>{{ task.description|default:"No description" }}</p>
+    <ul class="list-unstyled">
+      <li><strong>Type:</strong> {{ task.task_type.name }}</li>
+      <li><strong>Priority:</strong> {{ task.get_priority_display }}</li>
+      <li><strong>Deadline:</strong> {{ task.deadline }}</li>
+      <li><strong>Status:</strong> {% if task.is_completed %}<span class="badge badge-success">Done</span>{% else %}<span class="badge badge-danger">Not done</span>{% endif %}</li>
+      <li><strong>Tags:</strong> {% for tag in task.tags.all %}<span class="badge badge-info">{{ tag.name }}</span> {% empty %}none{% endfor %}</li>
+    </ul>
 
-  <h2 class="mt-4">Assignees</h2>
-  <form action="{% url 'tasks:toggle-task-assign' pk=task.id %}" method="post">
-    {% csrf_token %}
-    {% if user in task.assignees.all %}
-      <input type="submit" class="btn btn-danger" value="Unassign me">
-    {% else %}
-      <input type="submit" class="btn btn-success" value="Assign me">
-    {% endif %}
-  </form>
-  <hr>
-  <ul>
-    {% for worker in task.assignees.all %}
-      <li><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a> ({{ worker.first_name }} {{ worker.last_name }}{% if worker.position %}, {{ worker.position }}{% endif %})</li>
-    {% empty %}
-      <li>Nobody is assigned yet</li>
-    {% endfor %}
-  </ul>
+    <form action="{% url 'tasks:toggle-task-completed' pk=task.id %}" method="post" class="d-inline">
+      {% csrf_token %}
+      <input type="submit" class="btn {% if task.is_completed %}btn-warning{% else %}btn-success{% endif %}"
+             value="{% if task.is_completed %}Mark as not done{% else %}Mark as done{% endif %}">
+    </form>
+  </div></div>
+
+  <div class="card"><div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h5 mb-0">Assignees</h2>
+      <form action="{% url 'tasks:toggle-task-assign' pk=task.id %}" method="post">
+        {% csrf_token %}
+        {% if user in task.assignees.all %}
+          <input type="submit" class="btn btn-sm btn-danger" value="Unassign me">
+        {% else %}
+          <input type="submit" class="btn btn-sm btn-success" value="Assign me">
+        {% endif %}
+      </form>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for worker in task.assignees.all %}
+        <li class="list-group-item px-0"><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a> ({{ worker.first_name }} {{ worker.last_name }}{% if worker.position %}, {{ worker.position }}{% endif %})</li>
+      {% empty %}
+        <li class="list-group-item px-0 text-muted">Nobody is assigned yet</li>
+      {% endfor %}
+    </ul>
+  </div></div>
 {% endblock %}

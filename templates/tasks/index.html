@@ -1,24 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Task Manager Home</h1>
-  <p>Create tasks, assign them to your team and mark them as done before the deadline.</p>
-  <ul>
-    <li><strong>Tasks:</strong> {{ num_tasks }} ({{ num_open_tasks }} not completed)</li>
-    <li><strong>Workers:</strong> {{ num_workers }}</li>
-  </ul>
+  <div class="page-header">
+    <div>
+      <h1>Task Manager Home</h1>
+      <p class="text-muted mb-0">Create tasks, assign them to your team and mark them as done before the deadline.</p>
+    </div>
+  </div>
 
-  <h2>My open tasks</h2>
-  {% if my_open_tasks %}
-    <ul>
-      {% for task in my_open_tasks %}
-        <li>
-          <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
-          ({{ task.task_type.name }}, {{ task.get_priority_display }}) &mdash; deadline {{ task.deadline }}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>Nothing to do, great job!</p>
-  {% endif %}
+  <div class="row mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="card stat-card"><div class="card-body d-flex justify-content-between align-items-center">
+        <div><div class="text-muted">Tasks</div><div class="stat-value">{{ num_tasks }}</div></div>
+        <i class="bi bi-list-task stat-icon"></i>
+      </div></div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card stat-card"><div class="card-body d-flex justify-content-between align-items-center">
+        <div><div class="text-muted">Not completed</div><div class="stat-value">{{ num_open_tasks }}</div></div>
+        <i class="bi bi-hourglass-split stat-icon"></i>
+      </div></div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card stat-card"><div class="card-body d-flex justify-content-between align-items-center">
+        <div><div class="text-muted">Workers</div><div class="stat-value">{{ num_workers }}</div></div>
+        <i class="bi bi-people stat-icon"></i>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="h5 mb-3">My open tasks</h2>
+      {% if my_open_tasks %}
+        <ul class="list-group list-group-flush">
+          {% for task in my_open_tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              <span>
+                <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+                <small class="text-muted">({{ task.task_type.name }}, {{ task.get_priority_display }})</small>
+              </span>
+              <span class="text-muted">deadline {{ task.deadline }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted mb-0">Nothing to do, great job!</p>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

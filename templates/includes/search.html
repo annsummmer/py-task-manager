@@ -1,6 +1,6 @@
 {%  load crispy_forms_filters %}
 
-<form class="mb-4 d-flex" action="" method="get">
+<form class="mb-4 form-inline" action="" method="get">
   {{ search_form|crispy }}
-  <input type="submit" value="🔎" class="btn btn-primary h-100">
+  <button type="submit" class="btn btn-primary ml-2"><i class="bi bi-search"></i> Search</button>
 </form>

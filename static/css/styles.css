@@ -1,8 +1,164 @@
+/* Dashboard theme inspired by Volt / AdminLTE (Bootstrap dashboard templates) */
+:root {
+    --sidebar-bg: #262b40;
+    --sidebar-width: 250px;
+    --accent: #5a6bff;
+    --page-bg: #f3f5f9;
+}
+
 body {
-    margin-top: 20px;
+    background:
+        radial-gradient(circle at top right, rgba(90, 107, 255, .18), transparent 45%),
+        radial-gradient(circle at bottom left, rgba(90, 107, 255, .12), transparent 40%),
+        var(--page-bg);
+    background-attachment: fixed;
+    color: #31344b;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1rem;
+    background: var(--sidebar-bg);
+    overflow-y: auto;
+}
+
+.app-main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-width: 0;
+}
+
+.app-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.brand {
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: 0 .5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.brand:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-nav .nav-link {
+    margin-bottom: .25rem;
+    padding: .6rem .75rem;
+    border-radius: .5rem;
+    color: #c5c9de;
+}
+
+.sidebar-nav .nav-link i {
+    margin-right: .6rem;
+}
+
+.sidebar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+}
+
+.sidebar-nav .nav-link.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.sidebar-user {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+.sidebar-user .user-name {
+    display: block;
+    margin-bottom: .75rem;
+    color: #fff;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.card {
+    border: 0;
+    border-radius: .75rem;
+    box-shadow: 0 2px 8px rgba(38, 43, 64, .08);
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.stat-card .stat-icon {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+.table thead th {
+    border-top: 0;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #6b7090;
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+a {
+    color: var(--accent);
 }
 
 .link-to-page {
     float: right;
     margin: 0 2px 0 2px;
+}
+
+@media (max-width: 767.98px) {
+    .app {
+        display: block;
+    }
+
+    .app-sidebar {
+        position: static;
+        width: auto;
+    }
+
+    .app-main {
+        margin-left: 0;
+    }
+
+    .app-content {
+        padding: 1rem;
+    }
 }

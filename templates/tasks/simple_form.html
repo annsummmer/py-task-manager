@@ -2,10 +2,12 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update,Create" }} {{ entity }}</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
+  <div class="page-header"><h1>{{ object|yesno:"Update,Create" }} {{ entity }}</h1></div>
+  <div class="card"><div class="card-body">
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+  </div></div>
 {% endblock %}
