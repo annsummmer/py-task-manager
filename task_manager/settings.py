@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +22,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-e@hs6d4l&u@o(@wohhd6har-&4v%zyxe+0^or+n!jnhjujsn)1"
+
+env = environ.Env(
+    # set casting and default values
+    DEBUG=(bool, False)
 )
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Read a .env file if it exists
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env("DEBUG")
+
 
 ALLOWED_HOSTS = []
 
@@ -141,4 +149,3 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "logged_out"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-
