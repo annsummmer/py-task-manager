@@ -2,35 +2,38 @@
 {% load query_transform %}
 
 {% block content %}
-  <h1>
-    Task list
-    <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page">Create</a>
-  </h1>
+  <div class="page-header">
+    <h1>Task list</h1>
+    <a href="{% url 'tasks:task-create' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Create</a>
+  </div>
   {% include "includes/search.html" %}
-  <p>
-    Show:
-    <a href="?{% query_transform status=None page=None %}">all</a> |
-    <a href="?{% query_transform status='open' page=None %}">not completed</a> |
-    <a href="?{% query_transform status='done' page=None %}">completed</a>
-  </p>
-  {% if task_list %}
-    <table class="table">
-      <tr>
-        <th>Name</th><th>Type</th><th>Priority</th><th>Deadline</th><th>Status</th><th>Assignees</th><th>Tags</th>
-      </tr>
-      {% for task in task_list %}
-        <tr>
-          <td><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></td>
-          <td>{{ task.task_type.name }}</td>
-          <td>{{ task.get_priority_display }}</td>
-          <td>{{ task.deadline }}</td>
-          <td>{% if task.is_completed %}<span class="text-success">Done</span>{% else %}<span class="text-danger">Not done</span>{% endif %}</td>
-          <td>{% for worker in task.assignees.all %}{{ worker.username }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
-          <td>{% for tag in task.tags.all %}<span class="badge badge-info">{{ tag.name }}</span> {% endfor %}</td>
-        </tr>
-      {% endfor %}
-    </table>
-  {% else %}
-    <p>There are no tasks.</p>
-  {% endif %}
+  <div class="btn-group mb-3" role="group" aria-label="Filter by status">
+    <a class="btn btn-outline-primary" href="?{% query_transform status=None page=None %}">All</a>
+    <a class="btn btn-outline-primary" href="?{% query_transform status='open' page=None %}">Not completed</a>
+    <a class="btn btn-outline-primary" href="?{% query_transform status='done' page=None %}">Completed</a>
+  </div>
+  <div class="card"><div class="card-body table-responsive">
+    {% if task_list %}
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr><th>Name</th><th>Type</th><th>Priority</th><th>Deadline</th><th>Status</th><th>Assignees</th><th>Tags</th></tr>
+        </thead>
+        <tbody>
+          {% for task in task_list %}
+            <tr>
+              <td><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></td>
+              <td>{{ task.task_type.name }}</td>
+              <td>{{ task.get_priority_display }}</td>
+              <td>{{ task.deadline }}</td>
+              <td>{% if task.is_completed %}<span class="badge badge-success">Done</span>{% else %}<span class="badge badge-danger">Not done</span>{% endif %}</td>
+              <td>{% for worker in task.assignees.all %}{{ worker.username }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+              <td>{% for tag in task.tags.all %}<span class="badge badge-info">{{ tag.name }}</span> {% endfor %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="text-muted mb-0">There are no tasks.</p>
+    {% endif %}
+  </div></div>
 {% endblock %}

@@ -1,25 +1,55 @@
-<ul class="sidebar-nav list-group">
-  {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
-    <li class="list-group-item">
-      <form action="/accounts/logout/" method="post" style="display: inline;">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="/">
-        <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; padding: 0;">
-            Log Out
-        </button>
-      </form>
-    </li>
-  {% else %}
-    <li class="list-group-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-  {% endif %}
+{% with view=request.resolver_match.url_name %}
+<a class="brand" href="{% url 'tasks:index' %}">
+  <i class="bi bi-check2-square"></i> Task Manager
+</a>
 
-  <br>
-
-  <li class="list-group-item"><a href="{% url 'tasks:index' %}">Home</a></li>
-  <li class="list-group-item"><a href="{% url 'tasks:task-list' %}">All tasks</a></li>
-  <li class="list-group-item"><a href="{% url 'tasks:worker-list' %}">All workers</a></li>
-  <li class="list-group-item"><a href="{% url 'tasks:position-list' %}">Positions</a></li>
-  <li class="list-group-item"><a href="{% url 'tasks:task-type-list' %}">Task types</a></li>
-  <li class="list-group-item"><a href="{% url 'tasks:tag-list' %}">Tags</a></li>
+<ul class="nav flex-column sidebar-nav">
+  <li class="nav-item">
+    <a class="nav-link {% if view == 'index' %}active{% endif %}" href="{% url 'tasks:index' %}">
+      <i class="bi bi-speedometer2"></i> Home
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view == 'task-list' %}active{% endif %}" href="{% url 'tasks:task-list' %}">
+      <i class="bi bi-list-task"></i> All tasks
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view == 'worker-list' %}active{% endif %}" href="{% url 'tasks:worker-list' %}">
+      <i class="bi bi-people"></i> All workers
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view == 'position-list' %}active{% endif %}" href="{% url 'tasks:position-list' %}">
+      <i class="bi bi-briefcase"></i> Positions
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view == 'task-type-list' %}active{% endif %}" href="{% url 'tasks:task-type-list' %}">
+      <i class="bi bi-diagram-3"></i> Task types
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view == 'tag-list' %}active{% endif %}" href="{% url 'tasks:tag-list' %}">
+      <i class="bi bi-tags"></i> Tags
+    </a>
+  </li>
 </ul>
+
+<div class="sidebar-user">
+  {% if user.is_authenticated %}
+    <a class="user-name" href="{{ user.get_absolute_url }}"><i class="bi bi-person-circle"></i> {{ user.get_username }}</a>
+    <form action="/accounts/logout/" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="/">
+      <button type="submit" class="btn btn-sm btn-outline-light btn-block">
+        <i class="bi bi-box-arrow-right"></i> Log out
+      </button>
+    </form>
+  {% else %}
+    <a class="btn btn-sm btn-light btn-block" href="{% url 'login' %}?next={{ request.path }}">
+      <i class="bi bi-box-arrow-in-right"></i> Login
+    </a>
+  {% endif %}
+</div>
+{% endwith %}
