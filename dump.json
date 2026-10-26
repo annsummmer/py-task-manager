@@ -1,0 +1,359 @@
+[
+{
+    "model": "tasks.position",
+    "pk": 1,
+    "fields": {
+        "name": "Developer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 2,
+    "fields": {
+        "name": "Project Manager"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 3,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 4,
+    "fields": {
+        "name": "Designer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 5,
+    "fields": {
+        "name": "DevOps"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "Bug"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "New feature"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Breaking change 1"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "Refactoring"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 5,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 1,
+    "fields": {
+        "name": "landing-page-layout"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 2,
+    "fields": {
+        "name": "python-refactoring"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 3,
+    "fields": {
+        "name": "auth"
+    }
+},
+{
+    "model": "tasks.tag",
+    "pk": 4,
+    "fields": {
+        "name": "dashboard"
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1500000$6h8CwNxcyPMzHMe6EGfnya$q2iCMUd5N2EHKZGgYmjm4HCAItMyOmdIQtmdFHUJ0LA=",
+        "last_login": "2026-10-16T09:49:43.259Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Ada",
+        "last_name": "Admin",
+        "email": "admin@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-10-16T09:49:37.970Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1500000$mCX2jvjSaGo9ZAT955ByQU$7VYj/p0UK5D++7WkJ69k/5mWd/XXmhqOtjN6gdQ7St0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "dev1",
+        "first_name": "Dan",
+        "last_name": "Dev",
+        "email": "dev1@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-10-16T09:49:38.285Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1500000$RhUVAd1P4wDAEtbtf8RskS$4KjBxRc+UmS1fdGfjnzM2lR3dfBIAoJGkG/3FARpkTc=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "qa1",
+        "first_name": "Quinn",
+        "last_name": "Tester",
+        "email": "qa1@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-10-16T09:49:38.601Z",
+        "position": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1500000$JgIOG6mXXx96kZvATpiWIl$a0S4cyltaKdfgvRVHagdP1WG6ucwBtnY1onV13UNuTI=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "des1",
+        "first_name": "Dee",
+        "last_name": "Signer",
+        "email": "des1@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-10-16T09:49:38.915Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1500000$CLD6KlfSyhixsJuwc12Cpf$OCQK0QYElCQsVXMuaaN+gGP6dpAqSfVcBJNVElx0HDc=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "ops1",
+        "first_name": "Olga",
+        "last_name": "Ops",
+        "email": "ops1@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-10-16T09:49:39.229Z",
+        "position": 5,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$1500000$b1u46ovFWvM0XcAVCc1T1v$nkNDbzHcqR0Jcr22VexjzRpkSa9wcbWHdfV89teQo4g=",
+        "last_login": "2026-10-16T10:35:27.589Z",
+        "is_superuser": true,
+        "username": "admin@admin.com",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@gmail.coml.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-10-16T10:03:31.589Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+        "name": "Fix Dashboard for Vacancies",
+        "description": "Description for: Fix Dashboard for Vacancies",
+        "deadline": "2026-10-19",
+        "is_completed": false,
+        "priority": "urgent",
+        "task_type": 1,
+        "assignees": [
+            2
+        ],
+        "tags": [
+            4
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+        "name": "Add sign-in with Google button",
+        "description": "Description for: Add sign-in with Google button",
+        "deadline": "2026-10-26",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 2,
+        "assignees": [
+            4,
+            2
+        ],
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+        "name": "Refactor payments module",
+        "description": "Description for: Refactor payments module",
+        "deadline": "2026-11-05",
+        "is_completed": false,
+        "priority": "medium",
+        "task_type": 4,
+        "assignees": [
+            2
+        ],
+        "tags": [
+            2
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+        "name": "Design landing page",
+        "description": "Description for: Design landing page",
+        "deadline": "2026-10-23",
+        "is_completed": true,
+        "priority": "medium",
+        "task_type": 2,
+        "assignees": [
+            4
+        ],
+        "tags": [
+            1
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 5,
+    "fields": {
+        "name": "Regression test for release",
+        "description": "Description for: Regression test for release",
+        "deadline": "2026-10-21",
+        "is_completed": false,
+        "priority": "high",
+        "task_type": 5,
+        "assignees": [
+            1,
+            3
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 6,
+    "fields": {
+        "name": "Drop legacy API v1",
+        "description": "Description for: Drop legacy API v1",
+        "deadline": "2026-11-15",
+        "is_completed": false,
+        "priority": "low",
+        "task_type": 3,
+        "assignees": [
+            2,
+            5
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 7,
+    "fields": {
+        "name": "Fix login redirect",
+        "description": "Description for: Fix login redirect",
+        "deadline": "2026-10-14",
+        "is_completed": true,
+        "priority": "urgent",
+        "task_type": 1,
+        "assignees": [
+            2,
+            3
+        ],
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 8,
+    "fields": {
+        "name": "dassdas",
+        "description": "dsadsads",
+        "deadline": "3113-03-31",
+        "is_completed": false,
+        "priority": "low",
+        "task_type": 1,
+        "assignees": [
+            6,
+            2
+        ],
+        "tags": [
+            3
+        ]
+    }
+}
+]
