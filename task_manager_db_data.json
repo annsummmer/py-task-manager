@@ -99,25 +99,6 @@
 },
 {
   "model": "tasks.worker",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$1500000$6h8CwNxcyPMzHMe6EGfnya$q2iCMUd5N2EHKZGgYmjm4HCAItMyOmdIQtmdFHUJ0LA=",
-    "last_login": null,
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "Ada",
-    "last_name": "Admin",
-    "email": "admin@example.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2026-10-16T09:49:37.970Z",
-    "position": 2,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "tasks.worker",
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$1500000$mCX2jvjSaGo9ZAT955ByQU$7VYj/p0UK5D++7WkJ69k/5mWd/XXmhqOtjN6gdQ7St0=",
@@ -276,7 +257,6 @@
     "priority": "high",
     "task_type": 5,
     "assignees": [
-      1,
       3
     ],
     "tags": []

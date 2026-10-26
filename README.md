@@ -4,6 +4,12 @@
 A Django task manager for an IT team (developers, designers, project managers, QA).
 Everyone can create a task, assign it to team members and mark it as done before the deadline.
 
+## Live demo
+
+- Deployed app: https://py-task-manager-z1c3.onrender.com/
+
+Test user (regular account, not an admin): `dev1` / `password12345`
+
 ## Installing / Getting started
 
 Requires Python 3 and pip.
@@ -19,7 +25,7 @@ python manage.py runserver
 
 The app is then available at http://127.0.0.1:8000/.
 
-Demo users (from the fixture): `admin` / `admin12345`, `dev1`, `qa1`, `des1`, `ops1` / `password12345`.
+Demo users (from the fixture): `dev1`, `qa1`, `des1`, `ops1` / `password12345`.
 
 ### Initial Configuration
 
