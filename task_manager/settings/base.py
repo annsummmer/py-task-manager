@@ -149,7 +149,7 @@ else:
         "default": {
             "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
             "OPTIONS": {
-                "host": env("EMAIL_HOST"),
+                "host": env("EMAIL_HOST", default=""),
                 "port": env.int("EMAIL_PORT", default=587),
                 "username": env("EMAIL_HOST_USER", default=""),
                 "password": env("EMAIL_HOST_PASSWORD", default=""),

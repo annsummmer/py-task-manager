@@ -5,6 +5,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Local development runs over plain HTTP
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
