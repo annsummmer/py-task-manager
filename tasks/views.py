@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from .forms import (
+from tasks.forms import (
     NameSearchForm,
     TaskForm,
     TaskSearchForm,
@@ -14,7 +14,7 @@ from .forms import (
     WorkerPositionUpdateForm,
     WorkerSearchForm,
 )
-from .models import Position, Tag, Task, TaskType, Worker
+from tasks.models import Position, Tag, Task, TaskType, Worker
 
 
 @login_required
