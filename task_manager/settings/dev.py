@@ -1,6 +1,6 @@
-from .base import *
+from .base import BASE_DIR
 
-DEBUG=True
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
